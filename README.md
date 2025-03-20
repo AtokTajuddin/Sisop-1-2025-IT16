@@ -228,17 +228,25 @@ brain_damage() {
 }
 ```
 ### Nomor 4 ###
-#### A ####
+#### A & B####
 - Praktikan diminta untuk membuat tampilan ringkasan dari data dengan kriteria :
      - Menampilkan Pokemon dengan Usage% tertinggi dan Raw Usage tertinggi.
      - Menunjukkan informasi secara ringkas.
-  
+
+  ![Screenshot 2025-03-21 005712](https://github.com/user-attachments/assets/96223047-433b-49a6-a74d-2ff9a1e0b4c5)
 
 - Praktikan diminta untuk mengurutkan Pokemon berdasarkan kolom tertentu dengan kriteria :
      - Sortir berdasarkan Usage%, Raw Usage, Nama, atau statistik lainnya.
      - Descending untuk semua angka, ascending (A-Z) untuk Nama.
      - Output tetap dalam format CSV.
 
+Sort berdasarkan usage
+
+![Screenshot 2025-03-21 005909](https://github.com/user-attachments/assets/6e5d21d2-740d-48c9-89cd-4bfcc35c48bc)
+
+Sort berdasarkan speed
+
+![Screenshot 2025-03-21 010106](https://github.com/user-attachments/assets/b20c3565-28b4-434f-85de-5c8452ff6964)
 
 
 #### E & F ####
