@@ -228,7 +228,7 @@ brain_damage() {
 }
 ```
 ### Nomor 4 ###
-#### A & B####
+#### A & B ####
 - Praktikan diminta untuk membuat tampilan ringkasan dari data dengan kriteria :
      - Menampilkan Pokemon dengan Usage% tertinggi dan Raw Usage tertinggi.
      - Menunjukkan informasi secara ringkas.
