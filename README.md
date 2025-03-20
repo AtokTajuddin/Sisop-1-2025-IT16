@@ -22,7 +22,7 @@ untuk soal tersebut pertama kita perlu buat file dengan mengetik “nano script�
 ![3t](https://github.com/user-attachments/assets/29055091-b209-45ad-90df-eb83e92a1f5c)
 
 
-3. sebelum menjalankan dan mengeksekusi program kita perlu melakukan perizinan terlebih dahulu dengan mengetik “chmod +x script” lalu bisa kita jalankan dengan mengetik “awk -f script reading_data.csv”
+3. sebelum menjalankan dan mengeksekusi program kita perlu melakukan perizinan terlebih dahulu dengan mengetik “chmod +x script” lalu bisa kita jalankan dengan mengetik “awk -f script reading_data.csv” dan output akan muncul seperti yang digambar
 
 
 
