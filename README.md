@@ -10,7 +10,7 @@
 
 
 ### Soal_1 ###
-1. Untuk soal ini kita menggunakan awk untuk menganalisis file bernama reading_data.csv. Mulai dari analisis berapa banyak buku yang dibaca oleh “Chris Hemsworth”, berapa lama rata-rata mereka membaca dengan benda ini, mencari siapa yang memberikan rating tertinggi untuk buku yang dibaca (Rating) beserta nama (Name) dan judul bukunya (Book_Title), dan genre apa yang paling populer di sana setelah tahun 2023. dengan catatan Seluruh command dimasukkan kedalam 1 file dan gunakan kondisi if else untuk setiap soalnya.
+1. Untuk soal ini kita menggunakan awk untuk menganalisis file bernama reading_data.csv. Mulai dari analisis berapa banyak buku yang dibaca oleh “Chris Hemsworth”, berapa lama rata-rata mereka membaca dengan benda ini, mencari siapa yang memberikan rating tertinggi untuk buku yang dibaca (Rating) beserta nama (Name) dan judul bukunya (Book_Title), dan genre apa yang paling populer di sana setelah tahun 2023. dengan catatan Seluruh command dimasukkan ke dalam 1 file dan gunakan kondisi if else untuk setiap soalnya.
 untuk soal tersebut pertama kita perlu buat file dengan mengetik “nano script” dan mengisi nano script tersebut menggunakan kode berikut 
 
 ![1t](https://github.com/user-attachments/assets/685e8f10-eb0d-4f3f-84bf-91d6669d51a8)
@@ -91,35 +91,48 @@ A Few Source :
 
 ### Soal_3 ###
 #### a. Speak to Me ####
+- Praktikan diminta untuk menampilkan words of affirmation menggunakan API dari https://github.com/annthurium/affirmations untuk menampilkan "word of affirmation" setiap detik.
+
+- Preview
 
 https://github.com/user-attachments/assets/dbb00db2-18b0-4363-b718-5602f41d37c7
 
-- Praktikan diminta untuk menampilkan words of affirmation menggunakan API dari https://github.com/annthurium/affirmations untuk menampilkan "word of affirmation" setiap detik.
-
+- Code
+  
 ```bash
 speak_to_me() {
-    while true; do
-        aff=$(curl -s https://www.affirmations.dev | jq -r '.affirmation')
+    while true; do # Loop tanpa stop
+        aff=$(curl -s https://www.affirmations.dev | jq -r '.affirmation') # Mengambil kata-kata dari API
         echo -e "\e[5m$aff\e[0m"
-        sleep 1
+        sleep 1 # Jeda 1 detik sebelum kalimat selanjutnya
     done
 }
 ```
 #### b. On the Run ####
+- Deskripsi
+   - Praktikan diminta untuk membuat sebuah progress bar yang berjalan dengan interval acak (antara 0.1 sampai 1 detik). Progress bar harus memiliki perhitungan persentase dan panjangnya tetap, mengisi dari ujung kiri ke ujung kanan terminal.
+
+- Preview
 
 https://github.com/user-attachments/assets/1dc36d90-b893-4154-a6ab-7d7977b75304
 
-- Praktikan diminta untuk membuat sebuah progress bar yang berjalan dengan interval acak (antara 0.1 sampai 1 detik). Progress bar harus memiliki perhitungan persentase dan panjangnya tetap, mengisi dari ujung kiri ke ujung kanan terminal.
-
+- Code
+  
 ```bash
-    for ((i = 0; i <= track_length; i++)); do
-        index=$((i % 4))
-        spinballs=${spinball[$index]}
+on_the_run() {
+    cols=$(tput cols) # Mendapatkan jumlah kolom terminal
+    let "track_length = cols - 10" # Menentukan panjang track
+
+    spinball=("◐" "◓" "◑" "◒") # Simbol objek bergerak
+    track="" 
+    for ((i = 0; i <= track_length; i++)); do # Loop sepanjang track
+        index=$((i % 4)) 
+        spinballs=${spinball[$index]} # Memilih simbol berdasarkan indeks
         track+="_"
 
         progress=$(( (i * 100) / track_length ))
 
-        echo -ne "\r$track$spinballs [$progress%]"
+        echo -ne "\r$track$spinballs [$progress%]" # Menampilkan progress bar dengan animasi
 
         sleep $(awk -v min=0.1 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
     done
@@ -129,19 +142,22 @@ https://github.com/user-attachments/assets/1dc36d90-b893-4154-a6ab-7d7977b75304
 ```
 
 #### c. Time ####
+- Deskripsi
+   - Praktikan diminta untuk menampilkan live clock yang menunjukkan informasi waktu secara real-time. Informasi yang ditampilkan mencakup tahun, bulan, tanggal, jam, menit, dan detik, dan harus diperbarui setiap detik.
+
+- Preview
 
 https://github.com/user-attachments/assets/21666a16-f74b-4e00-a38a-e2ffb4f7641d
 
-- Praktikan diminta untuk menampilkan live clock yang menunjukkan informasi waktu secara real-time. Informasi yang ditampilkan mencakup tahun, bulan, tanggal, jam, menit, dan detik, dan harus diperbarui setiap detik.
-
+- Code
 ```bash
-time_display() {
+time_display() { # Loop tanpa stop
     while true; do
         clear
-        hour=$(date +%H)
-        date_time="📆 $(date '+%Y-%m-%d') ⏰ $(date '+%H:%M:%S')"
+        hour=$(date +%H) 
+        date_time="📆 $(date '+%Y-%m-%d') ⏰ $(date '+%H:%M:%S')" # Menampilkan waktu dalam format YYYY-MM-DD HH:MM:SS
 
-        if ((hour >= 6 && hour < 12)); then
+        if ((hour >= 6 && hour < 12)); then # Aksesoris tambahan yang menampilkan emoji berdasarkan range waktu tertentu
             creature="🌞 Pagi: 😀"
         elif ((hour >= 12 && hour < 15)); then
             creature="🌤️ Siang: 🙂"
@@ -155,21 +171,24 @@ time_display() {
 
         echo "$date_time"
         echo "$creature"
-        sleep 1
+        sleep 1 # Jeda 1 detik
     done
 }
 ```
 #### d. Money ####
+- Deskripsi
+   - Praktikan diminta untuk membuat efek seperti program cmatrix tetapi dengan karakter yang terdiri dari simbol mata uang seperti $, €, £, ¥, ¢, ₹, ₩, ₿, ₣, dan lain-lain. Dan minimal menggunakan lima simbol mata uang yang berbeda.
+
+- Preview
 
 https://github.com/user-attachments/assets/6e279ccf-7365-45fb-85e6-69806297fd51
 
-Praktikan diminta untuk membuat efek seperti program cmatrix tetapi dengan karakter yang terdiri dari simbol mata uang seperti $, €, £, ¥, ¢, ₹, ₩, ₿, ₣, dan lain-lain. Dan minimal menggunakan lima simbol mata uang yang berbeda.
-
+- Code
 ```bash
 money_matrix() {
     symbols=("$" "€" "£" "¥" "¢" "₹" "₩" "₿" "₣")
-    colors=(31 32 33 34 35 36 37)
-    cols=$(tput cols)
+    colors=(31 32 33 34 35 36 37) # Warna ANSI
+    cols=$(tput cols) # Mengambil lebar terminal
     lines=$(tput lines)
     while true; do
         clear
@@ -177,35 +196,48 @@ money_matrix() {
             for ((j=0; j<cols; j++)); do
                 if (( RANDOM % 5 == 0 )); then
                     color=${colors[RANDOM % ${#colors[@]}]}
-                    printf "\033[%sm%s" "$color" "${symbols[RANDOM % ${#symbols[@]}]}"
+                    printf "\033[%sm%s" "$color" "${symbols[RANDOM % ${#symbols[@]}]}"  # Mencetak simbol acak dalam warna-warna ANSI yang ada di array colors
                 else
                     printf " "
                 fi
             done
             echo ""
         done
-        sleep 0.1
+        sleep 0.1 # Jeda 0.1 detik sebelum cetak berikutnya
     done
 }
 ```
 #### e. Brain Damage ####
+- Deskripsi
+   - Praktikan diminta untuk menampilkan proses yang sedang berjalan seperti task manager di terminal. Data harus diperbarui setiap detik, menggunakan informasi yang dapat diperoleh dari perintah seperti ps atau top.
+
+- Preview
 
 https://github.com/user-attachments/assets/a5d0b824-caf8-4435-857c-3725bbb864c5
 
-Praktikan diminta untuk menampilkan proses yang sedang berjalan seperti task manager di terminal. Data harus diperbarui setiap detik, menggunakan informasi yang dapat diperoleh dari perintah seperti ps atau top.
-
+- Code
 ```bash
 brain_damage() {
     while true; do
         clear
-        printf "\033[1;37m%-8s %-10s %-6s %-6s %-15s\033[0m\n" "PID" "USER" "%CPU" "%MEM" "COMMAND"
+        printf "\033[1;37m%-8s %-10s %-6s %-6s %-15s\033[0m\n" "PID" "USER" "%CPU" "%MEM" "COMMAND" 
         echo -e "\033[1;37m--------------------------------------------------------\033[0m"
-        ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -n 15 | awk 'NR>1 {if (NR%3==1) color="\033[1;32m"; else if (NR%3==2) color="\033[1;>        printf "%s%-8s %-10s %-6s %-6s %-15s\033[0m\n", color, $1, $2, $3, $4, $5}'
-        sleep 1
+        ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -n 15 | awk 'NR>1 {if (NR%3==1) color="\033[1;32m"; else if (NR%3==2) color="\033[1;>        printf "%s%-8s %-10s %-6s %-6s %-15s\033[0m\n",  color, $1, $2, $3, $4, $5}' # Menampilkan 15 proses dengan penggunaan CPU tertinggi dengan warna yang sudah dideklarasi
+        sleep 1 # Update tiap 1 detik
     done
 }
 ```
 ### Nomor 4 ###
+#### A ####
+- Praktikan diminta untuk membuat tampilan ringkasan dari data dengan kriteria :
+     - Menampilkan Pokemon dengan Usage% tertinggi dan Raw Usage tertinggi.
+     - Menunjukkan informasi secara ringkas.
+  
+
+- Praktikan diminta untuk mengurutkan Pokemon berdasarkan kolom tertentu dengan kriteria :
+     - Sortir berdasarkan Usage%, Raw Usage, Nama, atau statistik lainnya.
+     - Descending untuk semua angka, ascending (A-Z) untuk Nama.
+     - Output tetap dalam format CSV.
 
 
 
