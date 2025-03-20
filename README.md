@@ -90,7 +90,121 @@ A Few Source :
 
 
 ### Soal_3 ###
+#### a. Speak to Me ####
 
+https://github.com/user-attachments/assets/6ad6df83-1cf9-4942-81c9-b3d86bcb6960
+
+- Praktikan diminta untuk menampilkan words of affirmation menggunakan API dari https://github.com/annthurium/affirmations untuk menampilkan "word of affirmation" setiap detik.
+
+```bash
+speak_to_me() {
+    while true; do
+        aff=$(curl -s https://www.affirmations.dev | jq -r '.affirmation')
+        echo -e "\e[5m$aff\e[0m"
+        sleep 1
+    done
+}
+```
+#### b. On the Run ####
+
+https://github.com/user-attachments/assets/f9523722-9bfa-4140-89f3-94a48b73bebe
+
+- Praktikan diminta untuk membuat sebuah progress bar yang berjalan dengan interval acak (antara 0.1 sampai 1 detik). Progress bar harus memiliki perhitungan persentase dan panjangnya tetap, mengisi dari ujung kiri ke ujung kanan terminal.
+
+```bash
+    for ((i = 0; i <= track_length; i++)); do
+        index=$((i % 4))
+        spinballs=${spinball[$index]}
+        track+="_"
+
+        progress=$(( (i * 100) / track_length ))
+
+        echo -ne "\r$track$spinballs [$progress%]"
+
+        sleep $(awk -v min=0.1 -v max=1 'BEGIN{srand(); print min+rand()*(max-min)}')
+    done
+
+    echo ""
+}
+```
+
+#### c. Time ####
+
+https://github.com/user-attachments/assets/c42b8397-fc11-4337-a203-5f4422aab4f4
+
+- Praktikan diminta untuk menampilkan live clock yang menunjukkan informasi waktu secara real-time. Informasi yang ditampilkan mencakup tahun, bulan, tanggal, jam, menit, dan detik, dan harus diperbarui setiap detik.
+
+```bash
+time_display() {
+    while true; do
+        clear
+        hour=$(date +%H)
+        date_time="📆 $(date '+%Y-%m-%d') ⏰ $(date '+%H:%M:%S')"
+
+        if ((hour >= 6 && hour < 12)); then
+            creature="🌞 Pagi: 😀"
+        elif ((hour >= 12 && hour < 15)); then
+            creature="🌤️ Siang: 🙂"
+        elif ((hour >= 15 && hour < 18)); then
+            creature="🌅 Sore: 😕"
+        elif ((hour >= 18 && hour < 19)); then
+            creature="🌆 Maghrib: 😴"
+        else
+            creature="🌙 Malam: 😪"
+        fi
+
+        echo "$date_time"
+        echo "$creature"
+        sleep 1
+    done
+}
+```
+#### d. Money ####
+
+https://github.com/user-attachments/assets/a22865b0-27a2-4c60-bb14-e3253c2aa8d1
+
+Praktikan diminta untuk membuat efek seperti program cmatrix tetapi dengan karakter yang terdiri dari simbol mata uang seperti $, €, £, ¥, ¢, ₹, ₩, ₿, ₣, dan lain-lain. Dan minimal menggunakan lima simbol mata uang yang berbeda.
+
+```bash
+money_matrix() {
+    symbols=("$" "€" "£" "¥" "¢" "₹" "₩" "₿" "₣")
+    colors=(31 32 33 34 35 36 37)
+    cols=$(tput cols)
+    lines=$(tput lines)
+    while true; do
+        clear
+        for ((i=0; i<lines; i++)); do
+            for ((j=0; j<cols; j++)); do
+                if (( RANDOM % 5 == 0 )); then
+                    color=${colors[RANDOM % ${#colors[@]}]}
+                    printf "\033[%sm%s" "$color" "${symbols[RANDOM % ${#symbols[@]}]}"
+                else
+                    printf " "
+                fi
+            done
+            echo ""
+        done
+        sleep 0.1
+    done
+}
+```
+#### e. Brain Damage ####
+
+https://github.com/user-attachments/assets/a5d0b824-caf8-4435-857c-3725bbb864c5
+
+Praktikan diminta untuk menampilkan proses yang sedang berjalan seperti task manager di terminal. Data harus diperbarui setiap detik, menggunakan informasi yang dapat diperoleh dari perintah seperti ps atau top.
+
+```bash
+brain_damage() {
+    while true; do
+        clear
+        printf "\033[1;37m%-8s %-10s %-6s %-6s %-15s\033[0m\n" "PID" "USER" "%CPU" "%MEM" "COMMAND"
+        echo -e "\033[1;37m--------------------------------------------------------\033[0m"
+        ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -n 15 | awk 'NR>1 {if (NR%3==1) color="\033[1;32m"; else if (NR%3==2) color="\033[1;>        printf "%s%-8s %-10s %-6s %-6s %-15s\033[0m\n", color, $1, $2, $3, $4, $5}'
+        sleep 1
+    done
+}
+```
 ### Nomor 4 ###
 
 
