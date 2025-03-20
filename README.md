@@ -92,7 +92,7 @@ A Few Source :
 ### Soal_3 ###
 #### a. Speak to Me ####
 
-https://github.com/user-attachments/assets/6ad6df83-1cf9-4942-81c9-b3d86bcb6960
+https://github.com/user-attachments/assets/dbb00db2-18b0-4363-b718-5602f41d37c7
 
 - Praktikan diminta untuk menampilkan words of affirmation menggunakan API dari https://github.com/annthurium/affirmations untuk menampilkan "word of affirmation" setiap detik.
 
@@ -107,7 +107,7 @@ speak_to_me() {
 ```
 #### b. On the Run ####
 
-https://github.com/user-attachments/assets/f9523722-9bfa-4140-89f3-94a48b73bebe
+https://github.com/user-attachments/assets/1dc36d90-b893-4154-a6ab-7d7977b75304
 
 - Praktikan diminta untuk membuat sebuah progress bar yang berjalan dengan interval acak (antara 0.1 sampai 1 detik). Progress bar harus memiliki perhitungan persentase dan panjangnya tetap, mengisi dari ujung kiri ke ujung kanan terminal.
 
@@ -130,7 +130,7 @@ https://github.com/user-attachments/assets/f9523722-9bfa-4140-89f3-94a48b73bebe
 
 #### c. Time ####
 
-https://github.com/user-attachments/assets/c42b8397-fc11-4337-a203-5f4422aab4f4
+https://github.com/user-attachments/assets/21666a16-f74b-4e00-a38a-e2ffb4f7641d
 
 - Praktikan diminta untuk menampilkan live clock yang menunjukkan informasi waktu secara real-time. Informasi yang ditampilkan mencakup tahun, bulan, tanggal, jam, menit, dan detik, dan harus diperbarui setiap detik.
 
@@ -161,7 +161,7 @@ time_display() {
 ```
 #### d. Money ####
 
-https://github.com/user-attachments/assets/a22865b0-27a2-4c60-bb14-e3253c2aa8d1
+https://github.com/user-attachments/assets/6e279ccf-7365-45fb-85e6-69806297fd51
 
 Praktikan diminta untuk membuat efek seperti program cmatrix tetapi dengan karakter yang terdiri dari simbol mata uang seperti $, €, £, ¥, ¢, ₹, ₩, ₿, ₣, dan lain-lain. Dan minimal menggunakan lima simbol mata uang yang berbeda.
 
